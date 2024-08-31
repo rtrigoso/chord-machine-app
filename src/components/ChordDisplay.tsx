@@ -1,10 +1,11 @@
 import { ChordName, Note, Notes } from "@/constants/music";
 import { GetNotesInChord } from "@/utils/music";
+import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
 
 interface ChordDisplayProps {
-    name: ChordName;
-    rootNote: Note;
+    name: Signal<ChordName>;
+    rootNote: Signal<Note>;
 };
 
 class ChordDisplay extends Component<ChordDisplayProps> {
@@ -14,7 +15,7 @@ class ChordDisplay extends Component<ChordDisplayProps> {
 
     render () {
         const { rootNote, name } = this.props;
-        const notes: Notes = GetNotesInChord(rootNote, name)
+        const notes: Notes = GetNotesInChord(rootNote.value, name.value)
 
         return (
             <div class="chord-display" >

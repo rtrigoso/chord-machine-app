@@ -1,43 +1,40 @@
 import { Note, NOTES } from "@/constants/music";
+import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
+import { get } from 'lodash';
 
 interface NoteSelectorProps {
-    setNote: (note: Note) => void
+    selected: Signal<Note>;
 }
 
-interface NoteSelectorState {
-    selected: Note;
-};
-
-class NoteSelector extends Component<NoteSelectorProps, NoteSelectorState> {
-    constructor() {
-        super();
-
-        this.state = {
-            selected: NOTES[0]
-        };
+class NoteSelector extends Component<NoteSelectorProps> {
+    constructor(props: NoteSelectorProps) {
+        super(props);
     }
 
-    #select (note: Note) {
-        this.setState({ selected: note});
-        this.props.setNote(note);
+    select (evt: Event) {
+        const note = get(evt, 'target.value', this.props.selected.value);
+        this.props.selected.value = note
     }
 
     render () {
-        const { selected } = this.state;
+        const { props, select } = this;
+        const { selected } = props;
 
         return (
             <div class="note-selector" >
                 <label for="note-selection">
-
+                    Select Chord
                 </label>
-                <select name="note-selection" class="note-selection">
+                <select
+                    name="note-selection"
+                    onInput={select.bind(this)}
+                    class="note-selection">
                     {
                         NOTES.map((note) => (
                             <Fragment key={note}>
                                 <option
-                                    selected={note === selected}
-                                    onSelect={(): void => { this.#select(note); }}
+                                    selected={note === selected.value}
                                     value={note}>
                                         {note}
                                 </option>
