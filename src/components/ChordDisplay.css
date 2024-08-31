@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=Wavefont:wght@4..1000&display=swap');
+
 .chord-display {
     display: flex;
     flex-direction: row;
@@ -9,6 +11,18 @@
 
 .chord-display:hover {
     cursor: pointer;
+}
+
+.chord-display.is-loading {
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    font-family: "Pixelify Sans", sans-serif;
+    text-decoration: none;
+  
+    * {
+      transition: transform 0.2s;
+      transform: skew(-2160deg);
+    }
 }
 
 .chord-display:not(:hover) {
@@ -30,4 +44,11 @@
 .chord-display-note {
     width: 2em;
     text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+    .chord-display {
+        width: 100%;
+        justify-content: space-between;
+    }
 }

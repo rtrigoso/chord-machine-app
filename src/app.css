@@ -6,25 +6,14 @@
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: flex-start;
-  min-width: 500px;
   row-gap: 1em;
   font-family: "Kode Mono", monospace;
   font-optical-sizing: auto;
   font-style: normal;
 }
 
-@media only screen and (max-width: 500px) {
-  #app {
-    min-width: auto;
-    max-width: 300px;
-    font-size: .85em;
-  }
-}
-
 .chords {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
   align-content: stretch;
   row-gap: 0.5em;
@@ -32,4 +21,28 @@
   height: 80vh;
   align-items: stretch;
   justify-content: flex-start;
+}
+
+@media only screen and (min-width: 501px) {
+  #app {
+    min-width: 500px;
+    font-size: 1em;
+  }
+
+  .chords {
+    flex-direction: column;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  #app {
+    min-width: auto;
+    max-width: 300px;
+    font-size: .85em;
+    align-items: center;
+  }
+
+  .chords {
+    flex-direction: row;
+  }
 }
