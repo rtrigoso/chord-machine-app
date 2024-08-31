@@ -1,0 +1,12 @@
+.note-selector {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    column-gap: 1em;
+}
+
+.note-selection {
+    border: solid thin #CBE5F7;
+    border-radius: 2px;
+}

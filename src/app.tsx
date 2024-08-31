@@ -1,19 +1,25 @@
 import './app.css';
 import { signal } from "@preact/signals";
-import { ChordName, Note } from './constants/music';
+import { CHORD_NAMES, Note } from './constants/music';
 import { NoteSelector } from './components/NoteSelector';
 import { ChordDisplay } from './components/ChordDisplay';
-import { ChordSelector } from './components/ChordSelector';
+import { Fragment } from 'preact/jsx-runtime';
 
 export function App() {
   const rootNote = signal<Note>("C");
-  const chordName = signal<ChordName>("minor");
 
   return (
     <>
       <NoteSelector selected={rootNote} />
-      <ChordSelector selected={chordName} />
-      <ChordDisplay name={chordName} rootNote={rootNote} />
+      <div class="chords">
+      {
+        CHORD_NAMES.map((name) => (
+          <Fragment key={name}>
+              <ChordDisplay name={name} rootNote={rootNote} />
+          </Fragment>
+        ))
+      }
+      </div>
     </>
   )
 }

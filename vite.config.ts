@@ -11,6 +11,7 @@ export default defineConfig({
       '@constants': path.resolve(__dirname, './src/constants')
     },
   },
+  base: "./",
   test: {
     globals: true,
     environment: 'jsdom'

@@ -1,0 +1,33 @@
+.chord-display {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.chord-display:hover {
+    cursor: pointer;
+}
+
+.chord-display:not(:hover) {
+    filter: brightness(70%);
+}
+
+.chord-display-name {
+    display: flex;
+}
+
+.chord-display-notes {
+    display: flex;
+    align-items: baseline;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+
+.chord-display-note {
+    width: 2em;
+    text-align: center;
+}
