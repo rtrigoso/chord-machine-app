@@ -1,4 +1,12 @@
-import { DistanceFromRootInSemitones, Note, SEMITONE_PER_OCTAVE, NOTES, ChordName, Notes, CHORDS } from '@constants/music';
+import {
+    DistanceFromRootInSemitones,
+    Note,
+    SEMITONE_PER_OCTAVE,
+    NOTES,
+    ChordName,
+    Notes,
+    CHORDS
+} from '@constants/music';
 
 export function GetAbsolute (distance: DistanceFromRootInSemitones): DistanceFromRootInSemitones {
     return distance % SEMITONE_PER_OCTAVE;
@@ -15,7 +23,7 @@ export function GetNote (root: Note, distanceFromRoot: DistanceFromRootInSemiton
 }
 
 export function GetNotesInChord (root: Note, name: ChordName): Notes {
-    let chord:Notes = [];
+    let chord: Notes = [];
     const chordValue = CHORDS[name];
     for (const distanceFromRoot of chordValue) {
         chord.push(GetNote(root, distanceFromRoot))
