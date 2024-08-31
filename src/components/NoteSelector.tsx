@@ -14,13 +14,13 @@ class NoteSelector extends Component<NoteSelectorProps, NoteSelectorState> {
         super();
 
         this.state = {
-            selected: "C"
+            selected: NOTES[0]
         };
     }
 
     #select (note: Note) {
+        this.setState({ selected: note});
         this.props.setNote(note);
-        return note;
     }
 
     render () {
