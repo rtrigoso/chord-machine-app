@@ -1,5 +1,5 @@
 import './ChordDisplay.css';
-import { CHORDS, ChordName, Note, Notes } from "@/constants/music";
+import { Balance, CHORDS, ChordName, Note, Notes } from "@/constants/music";
 import { GetNotesInChord } from "@/utils/music";
 import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
@@ -7,6 +7,7 @@ import { Component, Fragment } from "preact";
 interface ChordDisplayProps {
     name: ChordName;
     rootNote: Signal<Note>;
+    balance: Signal<Balance>;
 };
 
 interface ChordDisplayState {
@@ -21,6 +22,9 @@ class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
 
     onHover () {
         this.setState({ isInSemitones: true });
+        setTimeout(() => {
+            this.setState({ isInSemitones: false });
+        }, 1000);
     }
 
     onDrop () {
@@ -41,8 +45,8 @@ class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
 
     render () {
         const { isInSemitones, isLoading } = this.state;
-        const { rootNote, name } = this.props;
-        const notes: Notes = GetNotesInChord(rootNote.value, name);
+        const { rootNote, name, balance } = this.props;
+        const notes: Notes = GetNotesInChord(rootNote.value, name, balance.value);
 
         return (
             <div class={`chord-display ${isLoading ? 'is-loading' : ''}`} >

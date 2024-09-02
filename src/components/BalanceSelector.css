@@ -1,0 +1,36 @@
+.balance-options {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.balance-options > div {
+    display: flex;
+    width: 6em;
+    justify-content: space-evenly;
+}
+
+.balance-options label {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.person-icon {
+    width: 1em;
+}
+
+@media only screen and (min-width: 501px) {
+    .balance-options {
+        width: 500px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .balance-options {
+        width: 300px;
+    }
+}

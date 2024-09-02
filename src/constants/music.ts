@@ -102,3 +102,80 @@ export const CHORDS: Chords = Object.freeze({
 export type NoteOctave = -1 | 0 | 1;
 
 export const SEMITONE_PER_OCTAVE = 12;
+
+export type BalanceOn = true;
+export type BalanceOff = false;
+
+export interface Balance {
+    encoder: number;
+    value: Array<BalanceOff | BalanceOn>;
+    noteOctaves: Array<NoteOctave>;
+}
+
+export const BALANCE_MAP: Array<Balance> = [
+    {
+        encoder: 0,
+        value: [true, false, false, false],
+        noteOctaves: [0, 0, 0, 0]
+    },
+    {
+        encoder: 10,
+        value: [true, true, false, false],
+        noteOctaves: [0, 0, 0, 0]
+    },
+    {
+        encoder: 20,
+        value: [true, true, true, false],
+        noteOctaves: [0, 0, 0, 0]
+    },
+    {
+        encoder: 32,
+        value: [true, true, true, true],
+        noteOctaves: [0, 0, 0, 0]
+    },
+    {
+        encoder: 42,
+        value: [true, true, true, true],
+        noteOctaves: [0, -1, 0, 0]
+    },
+    {
+        encoder: 52,
+        value: [true, true, true, true],
+        noteOctaves: [0, -1, -1, 0]
+    },
+    {
+        encoder: 62,
+        value: [true, true, true, true],
+        noteOctaves: [0, -1, -1, -1]
+    },
+    {
+        encoder: 72,
+        value: [true, true, true, true],
+        noteOctaves: [0, 0, -1, -1]
+    },
+    {
+        encoder: 84,
+        value: [true, true, true, true],
+        noteOctaves: [0, 0, 0, -1]
+    },
+    {
+        encoder: 96,
+        value: [true, true, true, true],
+        noteOctaves: [0, 0, 0, 0]
+    },
+    {
+        encoder: 106,
+        value: [true, true, true, true],
+        noteOctaves: [0, 1, 0, 0]
+    },
+    {
+        encoder: 116,
+        value: [true, true, true, true],
+        noteOctaves: [0, 1, 1, 0]
+    },
+    {
+        encoder: 127,
+        value: [true, true, true, true],
+        noteOctaves: [0, 1, 1, 1]
+    }
+];
