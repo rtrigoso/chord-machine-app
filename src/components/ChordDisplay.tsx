@@ -1,5 +1,5 @@
 import './ChordDisplay.css';
-import { Balance, CHORDS, ChordName, Note, Notes } from "@/constants/music";
+import { Balance, ChordName, Note } from "@/constants/music";
 import { GetNotesInChord } from "@/utils/music";
 import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
@@ -46,7 +46,7 @@ class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
     render () {
         const { isInSemitones, isLoading } = this.state;
         const { rootNote, name, balance } = this.props;
-        const notes: Notes = GetNotesInChord(rootNote.value, name, balance.value);
+        const [notes, distancesFromRootInSemitones] = GetNotesInChord(rootNote.value, name, balance.value);
 
         return (
             <div class={`chord-display ${isLoading ? 'is-loading' : ''}`} >
@@ -57,7 +57,7 @@ class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
                     onMouseLeave={this.onDrop.bind(this)}
                 >
                 {
-                    (isInSemitones ? CHORDS[name] : notes).map(note => (
+                    (isInSemitones ? distancesFromRootInSemitones : notes).map(note => (
                         <Fragment key={note}>
                             <span class="chord-display-note">{note}</span>
                         </Fragment>

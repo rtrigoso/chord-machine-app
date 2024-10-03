@@ -24,8 +24,9 @@ export function GetNote (root: Note, distanceFromRoot: DistanceFromRootInSemiton
     return NOTES[absDistance];
 }
 
-export function GetNotesInChord (root: Note, name: ChordName, balance: Balance): Notes {
+export function GetNotesInChord (root: Note, name: ChordName, balance: Balance): [Notes, DistanceFromRootInSemitones[]] {
     let chord: Notes = [];
+    let distancesFromRootInSemitones: DistanceFromRootInSemitones[] = [];
     let chordValue = cloneDeep(CHORDS[name]);
     const octaveChanges = balance.noteOctaves;
 
@@ -48,7 +49,8 @@ export function GetNotesInChord (root: Note, name: ChordName, balance: Balance):
         
         if (!isActive) continue;
         chord.push(GetNote(root, distanceFromRoot))
+        distancesFromRootInSemitones.push(distanceFromRoot)
     }
 
-    return chord;
+    return [chord, distancesFromRootInSemitones];
 }
