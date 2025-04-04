@@ -37,7 +37,7 @@ class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
 
         return (
             <div class={`flex justify-between ${isLoading ? 'is-loading' : ''}`} >
-                <div class="chord-display-name">{name}</div>
+                <div class="chord-display-name normal-case">{name}</div>
                 <div 
                     class="chord-display-notes flex flex-column gap-1" 
                 >
