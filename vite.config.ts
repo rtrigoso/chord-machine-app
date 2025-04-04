@@ -42,7 +42,7 @@ export default defineConfig({
         start_url: "/",
         icons: [
             {
-                "src": "vite.svg",
+                "src": "vite.png",
                 "sizes": "512x512"
             }
         ],
