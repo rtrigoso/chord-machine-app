@@ -3,6 +3,7 @@ import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
 import path from 'path';
 import { VitePWA } from 'vite-plugin-pwa'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   resolve: {
@@ -25,6 +26,7 @@ export default defineConfig({
   },
   plugins: [
     preact(),
+    tailwindcss(),
     VitePWA({
       registerType: 'autoUpdate',
       devOptions: {

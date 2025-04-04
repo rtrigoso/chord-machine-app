@@ -1,4 +1,3 @@
-import './NoteSelector.css';
 import { Note, NOTES } from "@/constants/music";
 import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
@@ -23,7 +22,7 @@ class NoteSelector extends Component<NoteSelectorProps> {
         const { selected } = props;
 
         return (
-            <div class="note-selector" >
+            <div class="flex gap-1 justify-center bg-inherit">
                 <label for="note-selection">
                     Select Root Note:
                 </label>

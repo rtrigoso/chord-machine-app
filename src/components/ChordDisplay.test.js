@@ -9,6 +9,6 @@ describe('ChordDisplay', () => {
         const rootNote = signal("C");
         const balance = signal(BALANCE_MAP[3]);
         const { container } = render(<ChordDisplay rootNote={rootNote} name={"minor"} balance={balance}/>);
-        expect(container.textContent).toContain('minorCD#G')
+        expect(container.textContent).toContain('minorC/0D#/3G/7')
     });
 });

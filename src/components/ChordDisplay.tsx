@@ -1,4 +1,3 @@
-import './ChordDisplay.css';
 import { Balance, ChordName, Note } from "@/constants/music";
 import { GetNotesInChord } from "@/utils/music";
 import { Signal } from "@preact/signals";
@@ -11,24 +10,12 @@ interface ChordDisplayProps {
 };
 
 interface ChordDisplayState {
-    isInSemitones: boolean; 
     isLoading: boolean;
 }
 
 class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
     constructor(props: ChordDisplayProps) {
         super(props);
-    }
-
-    onHover () {
-        this.setState({ isInSemitones: true });
-        setTimeout(() => {
-            this.setState({ isInSemitones: false });
-        }, 1000);
-    }
-
-    onDrop () {
-        this.setState({ isInSemitones: false });
     }
 
     refreshDisplay () {
@@ -44,22 +31,20 @@ class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
     }
 
     render () {
-        const { isInSemitones, isLoading } = this.state;
+        const { isLoading } = this.state;
         const { rootNote, name, balance } = this.props;
         const [notes, distancesFromRootInSemitones] = GetNotesInChord(rootNote.value, name, balance.value);
 
         return (
-            <div class={`chord-display ${isLoading ? 'is-loading' : ''}`} >
+            <div class={`flex justify-between ${isLoading ? 'is-loading' : ''}`} >
                 <div class="chord-display-name">{name}</div>
                 <div 
-                    class="chord-display-notes" 
-                    onMouseEnter={this.onHover.bind(this)}
-                    onMouseLeave={this.onDrop.bind(this)}
+                    class="chord-display-notes flex flex-column gap-1" 
                 >
                 {
-                    (isInSemitones ? distancesFromRootInSemitones : notes).map(note => (
+                    notes.map((note, index) => (
                         <Fragment key={note}>
-                            <span class="chord-display-note">{note}</span>
+                            <span class="chord-display-note">{note}/{distancesFromRootInSemitones[index]}</span>
                         </Fragment>
                     ))
                 }

@@ -62,11 +62,7 @@ class BalanceSelector extends Component<BalanceSelectorProps> {
         const { selected } = props;
 
         return (
-            <div class="balance-selector" >
-                <label for="balance-selection">
-                    Balance:
-                </label>
-                <div class="balance-options">
+            <div class="flex flex-wrap gap-1 justify-center">
                     {
                         BALANCE_MAP.map((balance) => (
                             <Fragment key={balance.encoder}>
@@ -78,9 +74,8 @@ class BalanceSelector extends Component<BalanceSelectorProps> {
                                         name="balance-selection"
                                         value={balance.encoder} 
                                         onInput={select.bind(this)}
-                                    /><label 
-                                        for={`encoder-${balance.encoder}`}
-                                    >
+                                    />
+                                    <label for={`encoder-${balance.encoder}`}>
                                         {
                                         balance.value.map((isActive, i) => (
                                             <Person active={isActive} level={balance.noteOctaves[i]} />
@@ -92,7 +87,6 @@ class BalanceSelector extends Component<BalanceSelectorProps> {
                         ))
                     }
                 </div>
-            </div>
         );
     }
 }
