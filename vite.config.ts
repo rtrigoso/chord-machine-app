@@ -2,6 +2,7 @@
 import { defineConfig } from 'vite'
 import preact from '@preact/preset-vite'
 import path from 'path';
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   resolve: {
@@ -17,5 +18,36 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom'
   },
-  plugins: [preact()],
+  build: {
+    sourcemap: true,
+    ssrManifest: true,
+    outDir: 'dist'
+  },
+  plugins: [
+    preact(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      devOptions: {
+        enabled: true
+      },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}']
+      },
+      manifest: {
+        name: "vite-pwa-demo",
+        short_name: "pwa-demo",
+        description: "simple pwa demo with vite, preact, and typescript",
+        start_url: "/",
+        icons: [
+            {
+                "src": "vite.svg",
+                "sizes": "512x512"
+            }
+        ],
+        theme_color: "#eeffee",
+        background_color: "#eeffee",
+        display: "standalone"
+      }
+    })
+  ],
 })
