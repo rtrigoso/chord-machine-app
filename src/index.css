@@ -22,3 +22,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.bmc-btn-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem
+}
