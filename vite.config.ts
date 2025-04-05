@@ -36,9 +36,9 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg}']
       },
       manifest: {
-        name: "vite-pwa-demo",
-        short_name: "pwa-demo",
-        description: "simple pwa demo with vite, preact, and typescript",
+        name: "Elektron Toolbox",
+        short_name: "elektron-toolbox",
+        description: "set of tools for elektronauts",
         start_url: "/",
         icons: [
             {
