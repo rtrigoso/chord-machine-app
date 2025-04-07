@@ -179,3 +179,39 @@ export const BALANCE_MAP: Array<Balance> = [
         noteOctaves: [0, 1, 1, 1]
     }
 ];
+
+export const BASE = 2048; //0.0078125
+export const SPEEDS = [1, 2, 4, 8, 16, 32, 64];
+export const MULTIPLIER = [
+    1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048
+];
+
+export interface STEP_LOOP_OPTIONS_TYPE {
+    [key:string]: string
+}
+
+export const STEP_LOOP_OPTIONS: STEP_LOOP_OPTIONS_TYPE = {
+    2048: '128 bars / 2048',
+    1024: '64 bars / 1024',
+    512: '32 bars / 512',
+    256: '16 bars / 256',
+    128: '8 bars / 128',
+    64: '4 bars / 64',
+    32: '2 bars / 32',
+    16: '1 bars / 16',
+    8: '8',
+    4: '4',
+    2: '2',
+    1: '1',
+    0.5: 'twice every',
+    0.25: 'four times every',
+    0.0625: 'sixteen times every',
+    0.03125: 'thirty-two times every step',
+    0.015625: 'sixty-four times every step'
+}
+
+export interface Multiplier {
+    label: string;
+    value: number;
+    isStatic: boolean;
+};
