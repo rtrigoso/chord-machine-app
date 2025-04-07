@@ -10,7 +10,7 @@ export default function ChordCalculator() {
   const balance = signal<Balance>(BALANCE_MAP[3]);
 
   return (
-    <div class="flex flex-col m-2 gap-2 md:w-1/3 w-full">
+    <div class="flex flex-col m-2 gap-2 lg:w-1/3 w-full">
       <NoteSelector selected={rootNote} />
       <BalanceSelector selected={balance} />
       <div>

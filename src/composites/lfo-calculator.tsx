@@ -14,7 +14,7 @@ export default function ChordCalculator() {
     }
 
     return (
-        <div class="flex flex-col m-2 gap-2 md:w-1/3 w-full">
+        <div class="flex flex-col m-2 gap-2 lg:w-1/3 w-full">
             <label for="step-count" class="flex flex-col justify-center gap-1">
                 Repeat loop every
                 <select

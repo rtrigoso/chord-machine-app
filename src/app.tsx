@@ -26,7 +26,7 @@ export function App() {
             selected={isSelected('lfo')}
             onClick={() => selectTab('lfo')} />
         </ul>
-        <div data-tab-content="" class="px-5 py-2">
+        <div data-tab-content="" class="py-2">
           <TabContent id="chords" selected={isSelected('chords')}>
             <ChordCalculator />
           </TabContent>
