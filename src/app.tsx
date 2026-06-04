@@ -30,7 +30,7 @@ export function App() {
           <TabContent id="chords" selected={isSelected('chords')}>
             <ChordCalculator />
           </TabContent>
-          <TabContent id="chords" selected={isSelected('lfo')}>
+          <TabContent id="lfo" selected={isSelected('lfo')}>
             <LFOCalculator />
           </TabContent>
         </div>
