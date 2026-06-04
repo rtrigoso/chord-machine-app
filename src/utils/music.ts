@@ -7,7 +7,7 @@ import {
     Notes,
     CHORDS,
     Balance
-} from '@constants/music';
+} from '@/constants/music';
 import { cloneDeep } from 'lodash';
 
 export function GetAbsolute (distance: DistanceFromRootInSemitones): DistanceFromRootInSemitones {
