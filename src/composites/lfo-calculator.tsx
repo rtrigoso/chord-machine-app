@@ -4,7 +4,7 @@ import { CalculateOptions } from "@/utils/lfo";
 import { JSX } from "preact/jsx-runtime";
 import { get } from "lodash";
 
-export default function ChordCalculator() {
+export default function LFOCalculator() {
     const optionKeys = Object.keys(STEP_LOOP_OPTIONS);
     const selected = useSignal(optionKeys[0]);
 
