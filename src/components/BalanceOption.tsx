@@ -10,7 +10,7 @@ interface BalanceOptionProps {
 
 export function BalanceOption({ balance, checked, onSelect }: BalanceOptionProps) {
     return (
-        <div>
+        <div class="flex flex-row items-center">
             <input
                 type="radio"
                 checked={checked}
@@ -19,7 +19,7 @@ export function BalanceOption({ balance, checked, onSelect }: BalanceOptionProps
                 value={balance.encoder}
                 onInput={onSelect}
             />
-            <label for={`encoder-${balance.encoder}`}>
+            <label class="flex flex-row" for={`encoder-${balance.encoder}`}>
                 {
                     balance.value.map((isActive, i) => (
                         <Person key={i} active={isActive} level={balance.noteOctaves[i]} />

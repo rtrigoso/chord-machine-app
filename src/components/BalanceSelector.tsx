@@ -16,7 +16,7 @@ function BalanceSelector({ selected }: BalanceSelectorProps) {
     }
 
     return (
-        <div class="flex flex-wrap gap-1 justify-center">
+        <div class="grid grid-rows-7 sm:grid-rows-5 grid-flow-col gap-y-1 gap-x-4 mx-auto">
             {BALANCE_MAP.map((balance) => (
                 <BalanceOption
                     key={balance.encoder}

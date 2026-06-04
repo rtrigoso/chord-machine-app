@@ -15,35 +15,41 @@ export default function LFOCalculator() {
     const stepsValue = parseFloat(selected.value);
 
     return (
-        <div class="flex flex-col m-2 gap-2 lg:w-1/3 w-full">
-            <div class="flex flex-col justify-center gap-1">
+        <div class="flex flex-col m-2 gap-2 w-full">
+            <div class="flex flex-col justify-center gap-1 text-center">
                 <label for="step-count">
                     Repeat loop every
+                    <br/>
                     <select
                         name="step-count"
                         id="step-count"
-                        class="rounded-md cursor-pointer border border-dashed border-white text-center p-1 mx-1"
+                        class="cursor-pointer text-center p-1 mx-1 max-w-fit"
                         onInput={selectOption}>
                         {optionKeys.map(key => (
-                            <option key={key} value={key} class="decoration-wavy font-bold font-serif">
+                            <option key={key} value={key} class="decoration-wavy font-bold font-mono">
                                 {STEP_LOOP_OPTIONS[key]}
                             </option>
                         ))}
                     </select>
+                    <br/>
                     step{stepsValue > 1 ? 's' : ''} using the following parameter values
                 </label>
-                <div class="flex flex-col justify-center gap-1">
-                    <div class="flex justify-between">
-                        <div>Speed:</div>
-                        <div>Mult:</div>
-                    </div>
-                    {CalculateOptions(stepsValue).map(data => (
-                        <div key={`${data.spd}-${data.mult}`} class="flex justify-between">
-                            <div>{data.spd}</div>
-                            <div>{data.mult}</div>
-                        </div>
-                    ))}
-                </div>
+                <table id="lfo_args_table" class="border-separate border-spacing-x-4 mx-auto text-center">
+                    <thead>
+                        <tr>
+                            <th>Speed</th>
+                            <th>Mult</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {CalculateOptions(stepsValue).map(data => (
+                            <tr key={`${data.spd}-${data.mult}`}>
+                                <td class="text-center">{data.spd}</td>
+                                <td class="text-center">{data.mult}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     )

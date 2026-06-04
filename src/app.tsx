@@ -12,7 +12,7 @@ export function App() {
   const isSelected = (id: string) => id === selected.value;
 
   return (
-    <div class="w-full">
+    <div class="w-full lg:max-w-50">
       <div class="relative right-0">
         <ul class="relative flex flex-wrap h-min list-none rounded-md bg-elektron-primary" data-tabs="tabs" role="list">
           <TabOption

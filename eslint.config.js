@@ -29,6 +29,6 @@ export default [
         },
     },
     {
-        ignores: ['dist/**', 'node_modules/**', 'src/**/*.test.js'],
+        ignores: ['dist/**', 'dev-dist/**', 'node_modules/**', 'src/**/*.test.js'],
     },
 ];

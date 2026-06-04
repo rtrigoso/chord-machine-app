@@ -10,8 +10,8 @@ describe('LFOCalculator', () => {
 
     test('renders speed and multiplier labels', () => {
         const { container } = render(<LFOCalculator />);
-        expect(container.textContent).toContain('Speed:');
-        expect(container.textContent).toContain('Mult:');
+        expect(container.textContent).toContain('Speed');
+        expect(container.textContent).toContain('Mult');
     });
 
     test('updates displayed options when a new step value is selected', () => {

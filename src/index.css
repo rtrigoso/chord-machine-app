@@ -4,6 +4,7 @@
   --spacing: 1em;
   --color-elektron-primary: #151515;
   --color-elektron-secondary: #333337;
+  --color-elektron-tertiary: #252528;
 }
 
 :root {
@@ -11,16 +12,30 @@
   text-transform: uppercase;
   line-height: 1.5;
   font-weight: 400;
-
+  background-color: var(--color-elektron-tertiary);
   color-scheme: light dark;
   color: #EEEEF2;
-  font-size: 11px;
-  background-color: var(--color-elektron-primary);
-
+  font-size: 12px;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+input,
+select {
+  background-color: var(--color-elektron-tertiary);
+  font-weight: 700;
+}
+
+#app>* {
+  min-height: 100vh;
+  overflow: scroll;
+  background-color: var(--color-elektron-primary);
+}
+
+#step-count {
+  margin: 1rem;
 }
 
 .bmc-btn-container {
