@@ -43,14 +43,12 @@ export function GetNotesInChord (root: Note, name: ChordName, balance: Balance):
         chordValue = octaveChange.concat(chordValue);
     });
 
-    for (const index in chordValue) {
-        const distanceFromRoot = chordValue[index];
+    chordValue.forEach((distanceFromRoot, index) => {
         const isActive = balance.value[index];
-        
-        if (!isActive) continue;
-        chord.push(GetNote(root, distanceFromRoot))
-        distancesFromRootInSemitones.push(distanceFromRoot)
-    }
+        if (!isActive) return;
+        chord.push(GetNote(root, distanceFromRoot));
+        distancesFromRootInSemitones.push(distanceFromRoot);
+    });
 
     return [chord, distancesFromRootInSemitones];
 }
