@@ -8,7 +8,8 @@ import UnderBalanceOff from '@assets/under-balance-off.svg';
 import { Balance, BALANCE_MAP } from "@/constants/music";
 import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
-import { get, toInteger } from 'lodash';
+import { JSX } from "preact/jsx-runtime";
+import { toInteger } from 'lodash';
 
 interface SrcMap {
     [key: string]: string
@@ -49,8 +50,8 @@ class BalanceSelector extends Component<BalanceSelectorProps> {
         super(props);
     }
 
-    select (evt: Event) {
-        const encoder = get(evt, 'target.value', this.props.selected.value.encoder);
+    select (evt: JSX.TargetedEvent<HTMLInputElement>) {
+        const encoder = evt.currentTarget.value;
         const selected = BALANCE_MAP.find(balance => balance.encoder === toInteger(encoder));
         if (!selected) return;
 

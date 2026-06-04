@@ -2,14 +2,13 @@ import { useSignal } from "@preact/signals";
 import { STEP_LOOP_OPTIONS } from "@/constants/music";
 import { CalculateOptions } from "@/utils/lfo";
 import { JSX } from "preact/jsx-runtime";
-import { get } from "lodash";
 
 export default function LFOCalculator() {
     const optionKeys = Object.keys(STEP_LOOP_OPTIONS);
     const selected = useSignal(optionKeys[0]);
 
     function selectOption(evt: JSX.TargetedInputEvent<HTMLSelectElement>) {
-        const value = get(evt, 'target.value', optionKeys[0]);
+        const value = evt.currentTarget.value;
         selected.value = value;
     }
 

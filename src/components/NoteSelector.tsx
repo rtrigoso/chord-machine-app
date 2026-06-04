@@ -1,7 +1,7 @@
 import { Note, NOTES } from "@/constants/music";
 import { Signal } from "@preact/signals";
 import { Component, Fragment } from "preact";
-import { get } from 'lodash';
+import { JSX } from "preact/jsx-runtime";
 
 interface NoteSelectorProps {
     selected: Signal<Note>;
@@ -12,9 +12,8 @@ class NoteSelector extends Component<NoteSelectorProps> {
         super(props);
     }
 
-    select (evt: Event) {
-        const note = get(evt, 'target.value', this.props.selected.value);
-        this.props.selected.value = note
+    select (evt: JSX.TargetedEvent<HTMLSelectElement>) {
+        this.props.selected.value = evt.currentTarget.value as Note;
     }
 
     render () {
