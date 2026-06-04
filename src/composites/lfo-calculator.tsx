@@ -23,7 +23,7 @@ export default function LFOCalculator() {
                     onInput={selectOption}>
                     {
                         optionKeys.map(key => (
-                            <option value={key} class="decoration-wavy font-bold font-serif">{
+                            <option key={key} value={key} class="decoration-wavy font-bold font-serif">{
                                 STEP_LOOP_OPTIONS[key]
                             }</option>
                         ))
@@ -37,7 +37,7 @@ export default function LFOCalculator() {
                     {
                         CalculateOptions(parseFloat(selected.value))
                             .map(data => (
-                                <div class="flex justify-between">
+                                <div key={`${data.spd}-${data.mult}`} class="flex justify-between">
                                     <div>{data.spd}</div>
                                     <div>{data.mult}</div>
                                 </div>
