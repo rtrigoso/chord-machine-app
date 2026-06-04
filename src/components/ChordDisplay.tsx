@@ -9,42 +9,20 @@ interface ChordDisplayProps {
     balance: Signal<Balance>;
 };
 
-interface ChordDisplayState {
-    isLoading: boolean;
-}
-
-class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
-    private timeoutId: ReturnType<typeof setTimeout> | undefined;
-
+class ChordDisplay extends Component<ChordDisplayProps> {
     constructor(props: ChordDisplayProps) {
         super(props);
     }
 
-    refreshDisplay () {
-        const randomTimeout = 100 * Math.floor(Math.random() * 10);
-        const stopLoading = () => this.setState({ isLoading: false });
-        this.setState({ isLoading: true });
-        this.timeoutId = setTimeout(stopLoading, randomTimeout);
-    }
-
-    componentDidMount () {
-        this.refreshDisplay();
-    }
-
-    componentWillUnmount () {
-        clearTimeout(this.timeoutId);
-    }
-
     render () {
-        const { isLoading } = this.state;
         const { rootNote, name, balance } = this.props;
         const [notes, distancesFromRootInSemitones] = GetNotesInChord(rootNote.value, name, balance.value);
 
         return (
-            <div class={`flex justify-between ${isLoading ? 'is-loading' : ''}`} >
+            <div class="flex justify-between" >
                 <div class="chord-display-name normal-case">{name}</div>
-                <div 
-                    class="chord-display-notes flex flex-column gap-1" 
+                <div
+                    class="chord-display-notes flex flex-column gap-1"
                 >
                 {
                     notes.map((note, index) => (
