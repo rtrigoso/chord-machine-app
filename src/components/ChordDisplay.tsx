@@ -14,20 +14,25 @@ interface ChordDisplayState {
 }
 
 class ChordDisplay extends Component<ChordDisplayProps, ChordDisplayState> {
+    private timeoutId: ReturnType<typeof setTimeout> | undefined;
+
     constructor(props: ChordDisplayProps) {
         super(props);
     }
 
     refreshDisplay () {
         const randomTimeout = 100 * Math.floor(Math.random() * 10);
+        const stopLoading = () => this.setState({ isLoading: false });
         this.setState({ isLoading: true });
-        setTimeout(() => {
-            this.setState({ isLoading: false });
-        }, randomTimeout);
+        this.timeoutId = setTimeout(stopLoading, randomTimeout);
     }
 
     componentDidMount () {
         this.refreshDisplay();
+    }
+
+    componentWillUnmount () {
+        clearTimeout(this.timeoutId);
     }
 
     render () {
