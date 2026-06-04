@@ -2,7 +2,6 @@ import { useSignal } from "@preact/signals";
 import { CHORD_NAMES, Note, BALANCE_MAP, Balance } from '../constants/music';
 import { NoteSelector } from '../components/NoteSelector';
 import { ChordDisplay } from '../components/ChordDisplay';
-import { Fragment } from 'preact/jsx-runtime';
 import { BalanceSelector } from '../components/BalanceSelector';
 
 export default function ChordCalculator() {
@@ -14,15 +13,11 @@ export default function ChordCalculator() {
       <NoteSelector selected={rootNote} />
       <BalanceSelector selected={balance} />
       <div>
-      {
-        CHORD_NAMES.map((name, index) => (
-          <Fragment key={name}>
-            <div class={index % 2 ? 'bg-elektron-primary m-1' : 'bg-elektron-secondary p-1'}>
-              <ChordDisplay name={name} rootNote={rootNote} balance={balance} />
-            </div>
-          </Fragment>
-        ))
-      }
+        {CHORD_NAMES.map((name, index) => (
+          <div key={name} class={index % 2 ? 'bg-elektron-primary m-1' : 'bg-elektron-secondary p-1'}>
+            <ChordDisplay name={name} rootNote={rootNote} balance={balance} />
+          </div>
+        ))}
       </div>
     </div>
   )

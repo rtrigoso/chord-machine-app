@@ -8,7 +8,6 @@ import {
     CHORDS,
     Balance
 } from '@/constants/music';
-import { cloneDeep } from 'lodash';
 
 export function GetAbsolute (distance: DistanceFromRootInSemitones): DistanceFromRootInSemitones {
     return distance % SEMITONE_PER_OCTAVE;
@@ -27,7 +26,7 @@ export function GetNote (root: Note, distanceFromRoot: DistanceFromRootInSemiton
 export function GetNotesInChord (root: Note, name: ChordName, balance: Balance): [Notes, DistanceFromRootInSemitones[]] {
     let chord: Notes = [];
     let distancesFromRootInSemitones: DistanceFromRootInSemitones[] = [];
-    let chordValue = cloneDeep(CHORDS[name]);
+    let chordValue = [...CHORDS[name]];
     const octaveChanges = balance.noteOctaves;
 
     octaveChanges.forEach((value, index): void => {

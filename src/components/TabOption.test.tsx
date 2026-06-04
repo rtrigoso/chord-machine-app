@@ -14,14 +14,14 @@ describe('TabOption', () => {
         const { container } = render(
             <TabOption id="chords" label="chord translator" selected={true} onClick={() => {}} />
         );
-        expect(container.querySelector('.bg-elektron-secondary')).not.toBeNull();
+        expect(container.querySelector('.bg-elektron-primary')).not.toBeNull();
     });
 
     test('applies unselected style when not selected', () => {
         const { container } = render(
             <TabOption id="chords" label="chord translator" selected={false} onClick={() => {}} />
         );
-        expect(container.querySelector('.bg-elektron-primary')).not.toBeNull();
+        expect(container.querySelector('.bg-elektron-secondary')).not.toBeNull();
     });
 
     test('calls onClick when clicked', () => {
