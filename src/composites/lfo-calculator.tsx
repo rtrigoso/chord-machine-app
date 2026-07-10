@@ -17,7 +17,10 @@ export default function LFOCalculator() {
     return (
         <div class="flex flex-col m-2 gap-2 w-full">
             <div class="flex flex-col justify-center gap-1 text-center">
-                <label for="step-count">
+                <p class="text-yellow-600 border-b border-elektron-secondary pb-2">
+          Find the Speed and Mult values to sync an LFO to a specific number of steps on an Elektron synthesizer like the Syntakt or Model:Cycles.
+        </p>
+        <label for="step-count">
                     Repeat loop every
                     <br/>
                     <select
