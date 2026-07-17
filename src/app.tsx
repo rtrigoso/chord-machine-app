@@ -5,8 +5,9 @@ import TabOption from './components/TabOption';
 import ChordCalculator from './composites/chord-calculator';
 import LFOCalculator from './composites/lfo-calculator';
 import SubharmonicChords from './composites/subharmonic-chords';
+import PitchCheck from './composites/pitch-check';
 
-const VALID_TABS = ['chord-translator', 'lfo-calculator', 'subharmonic-chords'];
+const VALID_TABS = ['chord-translator', 'lfo-calculator', 'subharmonic-chords', 'pitch-check'];
 const DEFAULT_TAB = 'chord-translator';
 
 function getTabFromHash(): string {
@@ -55,6 +56,11 @@ export function App() {
             label='subharmonic chords'
             selected={isSelected('subharmonic-chords')}
             onClick={() => selectTab('subharmonic-chords')} />
+          <TabOption
+            id="pitch-check"
+            label='pitch check'
+            selected={isSelected('pitch-check')}
+            onClick={() => selectTab('pitch-check')} />
         </ul>
         <div data-tab-content="" class="py-2">
           <TabContent id="chord-translator" selected={isSelected('chord-translator')}>
@@ -65,6 +71,9 @@ export function App() {
           </TabContent>
           <TabContent id="subharmonic-chords" selected={isSelected('subharmonic-chords')}>
             <SubharmonicChords />
+          </TabContent>
+          <TabContent id="pitch-check" selected={isSelected('pitch-check')}>
+            <PitchCheck />
           </TabContent>
         </div>
       </div>
