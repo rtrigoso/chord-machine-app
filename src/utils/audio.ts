@@ -21,3 +21,38 @@ export async function decodeAudioBuffer(arrayBuffer: ArrayBuffer): Promise<Audio
   const ctx = new AudioContext();
   return ctx.decodeAudioData(arrayBuffer);
 }
+
+export interface AudioChunk {
+  index: number;
+  startTime: number;
+  endTime: number;
+  samples: Float32Array;
+}
+
+export function chunkAudioBuffer(audioBuffer: AudioBuffer): AudioChunk[] {
+  const samples = audioBuffer.getChannelData(0);
+  const { sampleRate } = audioBuffer;
+  const chunkSize = Math.floor(sampleRate * 0.02);
+  const chunks: AudioChunk[] = [];
+
+  for (let i = 0; i * chunkSize < samples.length; i++) {
+    const start = i * chunkSize;
+    const end = Math.min(start + chunkSize, samples.length);
+    chunks.push({
+      index: i,
+      startTime: start / sampleRate,
+      endTime: end / sampleRate,
+      samples: samples.slice(start, end),
+    });
+  }
+
+  return chunks;
+}
+
+export function getPlayback(audioBuffer: AudioBuffer): () => void {
+  const ctx = new AudioContext();
+  const source = ctx.createBufferSource();
+  source.buffer = audioBuffer;
+  source.connect(ctx.destination);
+  return () => source.start();
+}

@@ -1,14 +1,23 @@
-import { useState } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 import { AudioUploadForm } from "@/components/AudioUploadForm";
 import { AudioRecordingForm } from "@/components/AudioRecordingForm";
-
-type AudioInputMode = "upload" | "record";
+import { AudioPreview } from "@/components/AudioPreview";
+import { AudioInputModeSelector, AudioInputMode } from "@/components/AudioInputModeSelector";
+import { getPlayback, fileToArrayBuffer, decodeAudioBuffer } from "@utils/audio";
 
 export default function PitchCheck() {
     const [mode, setMode] = useState<AudioInputMode>("upload");
+    const [audioBuffer, setAudioBuffer] = useState<AudioBuffer | undefined>(undefined);
+    const [sampleRate, setSampleRate] = useState<number | undefined>(undefined);
 
-    const handleAudioSubmission = (file: File) => {
-        console.log("audio file submitted", file);
+    useEffect(() => {
+        setSampleRate(audioBuffer?.sampleRate);
+    }, [audioBuffer]);
+
+    const handleAudioSubmission = async (file: File) => {
+        const arrayBuffer = await fileToArrayBuffer(file);
+        const decoded = await decodeAudioBuffer(arrayBuffer);
+        setAudioBuffer(decoded);
     };
 
     const handleAudioInputSelected = (stream: MediaStream) => {
@@ -23,30 +32,20 @@ export default function PitchCheck() {
         console.log("recording stopped");
     };
 
+    const handlePlay = () => {
+        if (audioBuffer) {
+            const start = getPlayback(audioBuffer);
+            start();
+        }
+    };
+
     return (
         <div class="p-4 flex flex-col gap-4">
-            <div class="flex gap-4">
-                <label>
-                    <input
-                        type="radio"
-                        name="audio-input-mode"
-                        value="upload"
-                        checked={mode === "upload"}
-                        onChange={() => setMode("upload")}
-                    />
-                    {" "}Upload
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        name="audio-input-mode"
-                        value="record"
-                        checked={mode === "record"}
-                        onChange={() => setMode("record")}
-                    />
-                    {" "}Record
-                </label>
-            </div>
+            <AudioInputModeSelector
+                selected={mode}
+                onUploadSelected={() => setMode("upload")}
+                onRecordSelected={() => setMode("record")}
+            />
 
             {mode === "upload" && (
                 <AudioUploadForm onAudioSubmission={handleAudioSubmission} />
@@ -58,6 +57,9 @@ export default function PitchCheck() {
                     onRecordingStop={handleRecordingStop}
                 />
             )}
+
+            {sampleRate !== undefined && <p>Sample rate: {sampleRate} Hz</p>}
+            <AudioPreview onPlay={handlePlay} audioBuffer={audioBuffer} />
         </div>
     );
 }
