@@ -30,7 +30,6 @@ select {
 
 #app>* {
   min-height: 100vh;
-  overflow: scroll;
   background-color: var(--color-elektron-primary);
 }
 
